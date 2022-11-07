@@ -71,13 +71,6 @@ function zmija() {
 	a.set(guja[0]);
 	guja[0].add(v);
 	k.mult(0);
-	if (
-		guja[0].x * tileSize > sizee - tileSize ||
-		guja[0].y * tileSize > sizee - tileSize ||
-		guja[0].x < 0 ||
-		guja[0].y < 0
-	)
-		kraj();
 	kurac.forEach((jabuka) => {
 		if (guja[0].equals(jabuka)) {
 			createApple(jabuka);
@@ -92,6 +85,18 @@ function zmija() {
 	}
 	if (guja.length != 1) guja[1].set(a);
 	if (naKraj) guja.push(new p5.Vector(k.x, k.y));
+
+	guja.forEach((deoGuje) => {
+		if (deoGuje.x * tileSize > sizee - tileSize)
+			deoGuje.x = 0;
+		else if (deoGuje.y * tileSize > sizee - tileSize)
+			deoGuje.y = 0;
+		else if (deoGuje.x < 0)
+			deoGuje.x = sizee / tileSize;
+		else if (deoGuje.y < 0)
+			deoGuje.y = sizee / tileSize;
+
+	});
 }
 function pozadina() {
 	background(boja[0]);
